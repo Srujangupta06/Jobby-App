@@ -7,18 +7,18 @@ const Header = () => {
     navigate("/login");
   };
   return (
-    <header className="bg-blue-500 py-3 px-6 md:px-28 flex items-center justify-between shadow-lg shadow-gray-300">
+    <header className="bg-blue-500 py-3 px-6 md:px-28 flex items-center justify-between shadow-lg shadow-gray-300 fixed top-0 w-full z-10">
       <h1 className="text-white text-2xl font-semibold header-logo">Jobby</h1>
       <nav className="flex items-center gap-x-2 md:gap-x-10">
-        <li className="list-none text-white">
+        <li className="list-none text-white text-sm">
           <NavLink to="/">Home</NavLink>
         </li>
-        <li className="list-none text-white">
+        <li className="list-none text-white text-sm">
           <NavLink to="/explore-jobs">Jobs</NavLink>
         </li>
       </nav>
       <button
-        className="bg-white text-blue-500 px-3 py-1 rounded-sm"
+        className="bg-white text-blue-500 px-3 py-1 rounded-sm text-sm"
         onClick={onHandleLogout}
       >
         Logout

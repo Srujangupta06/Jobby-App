@@ -8,9 +8,9 @@
 .header-logo {
   font-family: "Bree Serif";
 }
-active{
-    font-size: 17px;
-    font-weight: 300;
+.active{
+    font-size: 18px;
+    font-weight: 700;
 }
 ::-webkit-scrollbar{
     display: none;

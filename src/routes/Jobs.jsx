@@ -3,9 +3,12 @@ import Header from "../components/Header";
 import Cookies from "js-cookie";
 import JobItem from "../components/JobItem";
 import { ThreeDots } from "react-loader-spinner";
+import Filters from "../components/Filters";
 const Jobs = () => {
   const [jobsData, setJobsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [jobType, setJobType] = useState("");
+  const [salary, setSalary] = useState("");
 
   const jwtToken = Cookies.get("jwtToken");
 
@@ -22,7 +25,7 @@ const Jobs = () => {
   };
   const fetchJobs = async () => {
     try {
-      const apiUrl = "https://apis.ccbp.in/jobs";
+      const apiUrl = `https://apis.ccbp.in/jobs`;
       const options = {
         method: "GET",
         headers: {
@@ -53,7 +56,7 @@ const Jobs = () => {
     if (jwtToken) {
       fetchJobs();
     }
-  }, [jwtToken]);
+  }, [jwtToken, jobType, salary]);
 
   const itemsPerPage = 12;
 
@@ -62,9 +65,11 @@ const Jobs = () => {
   const totalPages = Math.ceil(jobsData.length / itemsPerPage);
 
   const renderJobs = () => (
-    <div className="px-6 md:px-24 py-2">
-      {/*Right Side */}
-      <ul className="flex flex-wrap gap-8 pt-12 items-center">
+    <div className="w-[100%] md:w-[60%] py-2 px-2 md:relative md:left-[40%]  md:top-10">
+      <h3 className="text-md md:text-lg font-semibold my-4 ">
+        Explore Oppurtunities
+      </h3>
+      <ul className="flex flex-col flex-wrap gap-8 my-4 items-center md:items-end">
         {jobsData.slice(startIndex, endIndex).map((eachJob) => (
           <JobItem key={eachJob.id} job={eachJob} />
         ))}
@@ -93,7 +98,30 @@ const Jobs = () => {
   return (
     <>
       <Header />
-      {jobsData.length === 0 ? (
+      <div className="px-6 md:px-24 py-2 flex flex-col md:flex-row justify-between">
+        <Filters setSalary={setSalary} setJobType={setJobType} />
+        {jobsData.length === 0 ? (
+          <div className="min-h-screen flex flex-col items-center justify-center md:relative md:left-[60%]  md:top-10">
+            <ThreeDots
+              visible={true}
+              height="80"
+              width="80"
+              radius="9"
+              ariaLabel="three-dots-loading"
+              color="#3B82F6"
+            />
+          </div>
+        ) : (
+          renderJobs()
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Jobs;
+
+/*{jobsData.length === 0 ? (
         <div className="min-h-screen flex flex-col items-center justify-center">
           <ThreeDots
             visible={true}
@@ -106,9 +134,4 @@ const Jobs = () => {
         </div>
       ) : (
         renderJobs()
-      )}
-    </>
-  );
-};
-
-export default Jobs;
+      )} */

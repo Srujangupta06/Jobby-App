@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between md:px-28 px-6 py-8">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between md:px-28 px-6 py-8 relative top-30 md:top-10">
         <div className="md:w-1/2 flex flex-col items-start">
           <h1 className="text-3xl font-semibold text-blue-500 md:mb-4 mb-2">
             Find The Job That Fits Your Life
