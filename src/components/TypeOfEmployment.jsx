@@ -1,53 +1,36 @@
-const TypeOfEmployment = ({ setJobType }) => {
+const TypeOfEmployment = ({ jobType, setJobType }) => {
+  const handleCheckboxChange = (type) => {
+    setJobType(
+      (prev) =>
+        prev.includes(type)
+          ? prev.filter((item) => item !== type) // Remove if already selected
+          : [...prev, type] // Add if not selected
+    );
+  };
+
   return (
     <>
-      <h3 className="text-sm md:text-md font-semibold my-4 ">
+      <h3 className="text-sm md:text-md font-semibold my-4">
         Type of Employment
       </h3>
-      <div className="flex items-center mb-2">
-        <input
-          type="checkbox"
-          id="fullTime"
-          className="h-3 w-3 cursor-pointer"
-          onChange={() => setJobType("FULLTIME")}
-        />
-        <label className="ml-2 text-gray-600 text-sm" htmlFor="fullTime">
-          Full Time
-        </label>
-      </div>
-      <div className="flex items-center mb-2">
-        <input
-          type="checkbox"
-          id="partTime"
-          className="h-3 w-3 cursor-pointer"
-          onChange={() => setJobType("PARTTIME")}
-        />
-        <label className="ml-2 text-gray-600 text-sm" htmlFor="partTime">
-          Part Time
-        </label>
-      </div>
-      <div className="flex items-center mb-2">
-        <input
-          type="checkbox"
-          id="internship"
-          className="h-3 w-3 cursor-pointer"
-          onChange={() => setJobType("INTERNSHIP")}
-        />
-        <label className="ml-2 text-gray-600 text-sm" htmlFor="internship">
-          Internship
-        </label>
-      </div>
-      <div className="flex items-center mb-2">
-        <input
-          type="checkbox"
-          id="freelance"
-          className="h-3 w-3 cursor-pointer"
-          onChange={() => setJobType("FREELANCE")}
-        />
-        <label className="ml-2 text-gray-600 text-sm" htmlFor="freelance">
-          Freelance
-        </label>
-      </div>
+
+      {["FULLTIME", "PARTTIME", "INTERNSHIP", "FREELANCE"].map((type) => (
+        <div className="flex items-center mb-2" key={type}>
+          <input
+            type="checkbox"
+            id={type.toLowerCase()}
+            className="h-3 w-3 cursor-pointer"
+            checked={jobType.includes(type)}
+            onChange={() => handleCheckboxChange(type)}
+          />
+          <label
+            className="ml-2 text-gray-600 text-sm"
+            htmlFor={type.toLowerCase()}
+          >
+            {type.charAt(0) + type.slice(1).toLowerCase().replace("_", " ")}
+          </label>
+        </div>
+      ))}
     </>
   );
 };

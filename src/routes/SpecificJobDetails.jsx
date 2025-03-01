@@ -69,8 +69,8 @@ const SpecificJobDetails = () => {
   }, [id]);
 
   const renderJobInfo = () => (
-    <div className="px-6 md:px-24 pt-4 pb-6 relative top-10">
-      <div className=" bg-gray-100 my-8 py-4 px-4 shadow-lg rounded-md">
+    <div className="px-6 md:px-24 pt-4 pb-6 relative top-10 flex flex-col items-center">
+      <div className=" bg-gray-100 my-8 py-4 px-4 shadow-lg rounded-md w-[100%]">
         <div className="flex items-start gap-x-4">
           <img src={companyLogoUrl} alt="company logo" className="h-16 w-16" />
           <div>
@@ -113,7 +113,7 @@ const SpecificJobDetails = () => {
           })}
         </ul>
         <h3 className="text-md font-semibold my-4">Required Skills</h3>
-        <ul className="flex items-center gap-x-10">
+        <ul className="flex items-center gap-x-10 flex-wrap gap-y-2">
           {skills?.map((eachSkill, index) => (
             <SkillItem key={index} skillInfo={eachSkill} />
           ))}
@@ -121,7 +121,7 @@ const SpecificJobDetails = () => {
       </div>
 
       {/*Similar Jobs */}
-      <SimilarJobs similarJobsInfo={similarJobs} />
+      {/* <SimilarJobs similarJobsInfo={similarJobs} /> */}
     </div>
   );
 
