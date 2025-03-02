@@ -4,8 +4,8 @@ import Cookies from "js-cookie";
 import Header from "../components/Header";
 import { IoIosStar } from "react-icons/io";
 import { FaLocationDot, FaSuitcase } from "react-icons/fa6";
-import SkillItem from "../components/skillItem";
-import SimilarJobs from "../components/SimilarJobs";
+import SkillItem from "../components/SkillItem";
+
 import { ThreeDots } from "react-loader-spinner";
 const SpecificJobDetails = () => {
   const { id } = useParams();
